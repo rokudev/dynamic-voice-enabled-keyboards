@@ -1,5 +1,11 @@
 # Dynamic voice-enabled keyboards
 
+## Overview
+
+This sample channel demonstrates how to create and configure dynamic voice-enabled keyboards. The sample channel includes a voice-enabled keyboard, PIN pad, mini-keyboard, and custom keyboard (an address keyboard form).
+
+## DynamicKeyboard nodes
+
 The DynamicKeyboard nodes combine DynamicKeyGrid and VoiceTextEditBox nodes to provide a single node that supports text entry in multiple languages and voice entry in English.
 
 - The **DynamicKeyGrid** provides keyboard functionality. The layout of the keyboard is based on a JSON-formatted Key Definition File. 
@@ -10,10 +16,12 @@ The DynamicKeyboard nodes combine DynamicKeyGrid and VoiceTextEditBox nodes to p
 
 - The **VoiceTextEditBox** displays the text that has been entered or spoken. This node supports multiple voice entry modes for entering email addresses, passwords, street addresses, and PINs. This node currently supports voice entry in English only.
 
-> Developers should upgrade the [legacy keyboards](https://developer.roku.com/docs/references/scenegraph/dialog-nodes/dialog.md) in their channels to dynamic voice-enabled keyboards in order to leverage the following benefits: 
->
-> - **Faster on-device sign-ups and sign-ins.** Enable customers to use voice entry to provide PIN codes when subscribing to channels and passwords when logging in. 
->
-> - **Localized in-channel search**: Enable customers to search for content in their native language. 
->
-> - **Localized customer information entry**: Enable customers to enter their personal information in their native language. 
+## Upgrading to dynamic voice-enabled keyboards
+
+Developers should upgrade the [legacy keyboards](https://developer.roku.com/docs/references/scenegraph/dialog-nodes/dialog.md) in their channels to dynamic voice-enabled keyboards in order to leverage the following benefits: 
+
+- **Faster on-device sign-ups and sign-ins.** Enable customers to use voice entry to provide PIN codes when subscribing to channels and passwords when logging in. 
+
+- **Localized in-channel search**: Enable customers to search for content in their native language. 
+
+- **Localized customer information entry**: Enable customers to enter their personal information in their native language. 
