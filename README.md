@@ -8,7 +8,7 @@ Developers can upgrade the legacy keyboards, mini keyboards, and PIN pads in the
 
 To run this sample channel, follow these steps:
 
-1. Download the sample channel.
+1. Download and extract the sample channel.
 
 2. Follow the steps in [Development environment setup](https://developer.roku.com/docs/developer-program/getting-started/developer-setup.md) to enable developer mode on your device, archive the files, and then sideload the archive to your Roku device.
 
