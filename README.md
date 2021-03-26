@@ -2,7 +2,9 @@
 
 ## Overview
 
-This sample channel demonstrates how to create and configure dynamic voice-enabled keyboards. The sample channel includes a voice-enabled keyboard, PIN pad, mini-keyboard, and custom keyboard (an address keyboard form).
+This sample channel demonstrates how to create and configure dynamic voice-enabled keyboards. The sample channel includes a voice-enabled keyboard, PIN pad, mini-keyboard, and custom keyboard (an address keyboard form). 
+
+Developers can upgrade the legacy keyboards, mini keyboards, and PIN pads in their channels to include voice entry in English and text entry in multiple languages. The new dynamic voice-enabled keyboards enable customers to speak their PIN codes when subscribing to channels and their passwords when logging in, which helps reduce friction. Other benefits include localized in-channel search and localized customer information entry. 
 
 ## DynamicKeyboard nodes
 
