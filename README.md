@@ -6,6 +6,14 @@ This sample channel demonstrates how to create and configure dynamic voice-enabl
 
 Developers can upgrade the legacy keyboards, mini keyboards, and PIN pads in their channels to include voice entry in English and text entry in multiple languages. The new dynamic voice-enabled keyboards enable customers to, for example, speak their passwords when logging in, which helps reduce friction. Other benefits include localized in-channel search and localized customer information entry. 
 
+To run this sample channel, follow these steps:
+
+1. Download this sample.
+
+2. Follow the steps in [Development environment setup](https://developer.roku.com/docs/developer-program/getting-started/developer-setup.md) to enable developer mode on your device, and then archive and sideload it.
+
+3. In the UI of the sample channel, select a keyboard from the list.
+
 ## DynamicKeyboard nodes
 
 The DynamicKeyboard nodes combine DynamicKeyGrid and VoiceTextEditBox nodes to provide a single node that supports text entry in multiple languages and voice entry in English.
