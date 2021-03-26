@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="CustomAddressKeyboardTest" extends="Group" initialFocus="theKeyboard">
+
+<script type="text/brightscript" >
+<![CDATA[
+    sub init()
+        m.addressParts = [ "Name", "Address", "Apt/Bldg Number", "City", "State", "Zip" ]
+
+        m.keyboard = m.top.findNode("theKeyboard")
+
+        m.addressPartLabel = m.top.findNode("AddressPartLabel")
+        m.rightLabelGroup = m.top.findNode("rightLabelGroup")
+
+'        m.enteredText = m.top.findNode("enteredText")
+	m.keyboard.observeFieldScoped("text", "textChanged")
+        m.keyboard.observeFieldScoped("next", "doNext")
+        m.keyboard.observeFieldScoped("prev", "doPrev")
+
+        m.currAddressPart = 0
+        updateAddressPart()
+
+        m.keyboard.setFocus(true)
+    end sub
+
+    sub doNext()
+        m.currAddressPart = m.currAddressPart + 1
+        updateAddressPart()
+    end sub
+
+    sub doPrev()
+        m.currAddressPart = m.currAddressPart - 1
+        updateAddressPart()
+    end sub
+
+    sub updateAddressPart()
+        if m.currAddressPart = 0
+            m.keyboard.mode = "NameUpper"
+            m.stringToUpdate = m.top.findNode("EnteredName")
+            m.keyboard.domain = "generic"
+        else if m.currAddressPart = 1
+            m.keyboard.mode = "FullUpper"
+            m.stringToUpdate = m.top.findNode("EnteredAddress")
+            m.keyboard.domain = "alphanumeric"
+        else if m.currAddressPart = 2
+            m.keyboard.mode = "FullUpper"
+            m.stringToUpdate = m.top.findNode("EnteredApt")
+            m.keyboard.domain = "alphanumeric"
+        else if m.currAddressPart = 3
+            m.keyboard.mode = "CityStateUpper"
+            m.stringToUpdate = m.top.findNode("EnteredCity")
+            m.keyboard.domain = "generic"
+        else if m.currAddressPart = 4
+            m.keyboard.mode = "CityStateUpper"
+            m.stringToUpdate = m.top.findNode("EnteredState")
+            m.keyboard.domain = "generic"
+        else if m.currAddressPart = 5
+            m.keyboard.mode = "Zip"
+            m.stringToUpdate = m.top.findNode("EnteredZip")
+            m.keyboard.domain = "numeric"
+        end if
+        m.addressPartLabel.text = m.addressParts[m.currAddressPart]
+        m.keyboard.text = m.stringToUpdate.text
+        m.keyboard.textEditBox.cursorPosition = m.keyboard.text.Len()
+        m.keyboard.keyGrid.jumpToKey = [ 0, 0, 0 ]
+
+        numRightLabels = m.rightLabelGroup.getChildCount()
+        for cc=0 to numRightLabels-1
+            childLabel = m.rightLabelGroup.getChild(cc)
+            if (cc = 2 * m.currAddressPart) or (cc = 2 * m.currAddressPart + 1)
+                childLabel.opacity = 1.0
+            else
+                childLabel.opacity = 0.7
+            end if
+        end for
+    end sub
+
+    sub textChanged()
+        ? "TEXT CHANGED TO: "; m.keyboard.text
+	m.stringToUpdate.text = m.keyboard.text
+    end sub
+]]>
+</script>
+
+<children>
+    <SimpleLabel translation="[144,80]" fontUri="font:LargeBoldSystemFont" text="Custom Address Keyboard Test" />
+
+    <SimpleLabel id="AddressPartLabel" translation="[144, 150]" fontUri="font:SmallSystemFont" />
+    <CustomAddressKeyboard id="theKeyboard" translation="[144,180]" />
+
+    <Group id="rightLabelGroup" >
+        <SimpleLabel translation="[680,180]" fontUri="font:SmallSystemFont" text="Name:" />
+        <SimpleLabel id="EnteredName" translation="[680,204]" fontUri="font:MediumSystemFont" />
+
+        <SimpleLabel translation="[680,260]" fontUri="font:SmallSystemFont" text="Address:" />
+        <SimpleLabel id="EnteredAddress" translation="[680,284]" fontUri="font:MediumSystemFont" />
+
+        <SimpleLabel translation="[680,340]" fontUri="font:SmallSystemFont" text="Apt/Bldg Number (optional):" />
+        <SimpleLabel id="EnteredApt" translation="[680,364]" fontUri="font:MediumSystemFont" />
+
+        <SimpleLabel translation="[680,420]" fontUri="font:SmallSystemFont" text="City:" />
+        <SimpleLabel id="EnteredCity" translation="[680,444]" fontUri="font:MediumSystemFont" />
+
+        <SimpleLabel translation="[680,500]" fontUri="font:SmallSystemFont" text="State:" />
+        <SimpleLabel id="EnteredState" translation="[680,524]" fontUri="font:MediumSystemFont" />
+
+        <SimpleLabel translation="[680,580]" fontUri="font:SmallSystemFont" text="Zip code:" />
+        <SimpleLabel id="EnteredZip" translation="[680,604]" fontUri="font:MediumSystemFont" />
+    </Group>
+
+</children>
+
+</component>

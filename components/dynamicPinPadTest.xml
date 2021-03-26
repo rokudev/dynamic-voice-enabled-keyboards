@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="DynamicPinPadTest" extends="Group" initialFocus="thePinPad" >
+
+<script type="text/brightscript" >
+<![CDATA[
+    function init()
+        m.pinpad = m.top.findNode("thePinPad")
+	m.pinpad.textEditBox.voiceEnabled = true
+
+        ' channel is designed for HD coords
+        m.screenWidth  = 1280
+        m.screenHeight = 720
+
+        centerKeyGrid()
+    end function
+
+    function centerKeyGrid()
+        brect = m.pinpad.boundingRect()
+
+        m.pinpad.translation = [(m.screenWidth-brect.width) / 2, (m.screenHeight-brect.height) / 2]
+     end function
+]]>
+</script>
+
+<children>
+    <SimpleLabel translation="[100, 80]" fontUri="font:LargeBoldSystemFont" text="DynamicPinPad Use Case - Pin Entry" />
+    <DynamicPinPad id="thePinPad" />
+</children>
+
+</component>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="CustomAddressKeyboard" extends="DynamicCustomKeyboard" >
+
+<interface>
+    <function name="keySelected" />
+    <field id="next" type="bool" alwaysNotify="true" />
+    <field id="prev" type="bool" alwaysNotify="true" />
+    <field id="mode" type="string" onChange="modeChanged" />
+</interface>
+
+<script type="text/brightscript" >
+<![CDATA[
+    sub init()
+        m.modes = [ "NameLower", "NameUpper", "FullLower", "FullUpper", "CityStateUpper", "CityStateLower", "Zip" ]
+
+        m.top.keyGrid.keyDefinitionUri="pkg:/data/CustomAddressKDF.json"
+
+' TODO: Get a background image from UX and palette colors to demonstrate how to customize keyboard colors
+'       keyboardPalette = createObject("roSGNode", "RSGPalette")
+'       keyboardPalette.colors = { "FocusColor": "0x00CCCCFF", "PrimaryTextColor": "0xFFFF00FF", "SecondaryItemColor": "0xFE1E1E1FF", "FocusItemColor": "0xFFFF00FF", "KeyboardColor": "0x00CCCC80", "InputFieldColor":"0x00CCCC80" }
+'       m.top.palette = keyboardPalette
+    end sub
+
+    sub modeChanged()
+        updateMode(m.top.mode)
+    end sub
+
+    sub updateMode(mode as String)
+        m.currMode = mode
+        if m.currMode <> m.top.keyGrid.mode
+            m.top.keyGrid.mode = m.currMode
+        end if
+    end sub
+
+    function keySelected(key as string) as boolean
+         ? "KEY SELECTED: "; key
+	 handled = false
+         if (key = "UpperLower")
+             if (m.currMode = "NameUpper")
+                 updateMode("NameLower")
+             else if (m.currMode = "NameLower")
+                 updateMode("NameUpper")
+             else if (m.currMode = "FullUpper")
+                 updateMode("FullLower")
+             else if (m.currMode = "FullLower")
+                 updateMode("FullUpper")
+             else if (m.currMode = "CityStateUpper")
+                 updateMode("CityStateLower")
+             else if (m.currMode = "CityStateLower")
+                 updateMode("CityStateUpper")
+             end if
+	     handled = true
+          else if (key = "Next")
+	     m.top.next = true
+	     handled = true
+          else if (key = "Prev")
+	     m.top.prev = true
+	     handled = true
+          end if
+
+          return handled
+     end function
+]]>
+</script>
+
+<children>
+
+</children>
+
+</component>

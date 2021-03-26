@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="DynamicMiniKeyboardTest" extends="Group" initialFocus="theKeyboard" >
+
+<script type="text/brightscript" >
+<![CDATA[
+    function init()
+        m.kb = m.top.findNode("theKeyboard")
+        m.kb.textEditBox.hintText = "Enter Search Query"
+	m.kb.textEditBox.voiceEnabled = true
+
+        ' channel is designed for HD coords
+        m.screenWidth  = 1280
+        m.screenHeight = 720
+
+        centerKeyGrid()
+    end function
+
+    function centerKeyGrid()
+        brect = m.kb.boundingRect()
+
+        m.kb.translation = [(m.screenWidth-brect.width) / 2, (m.screenHeight-brect.height) / 2]
+     end function
+]]>
+</script>
+
+<children>
+    <SimpleLabel translation="[100, 50]" fontUri="font:LargeBoldSystemFont" text="DynamicMiniKeyboard Use Case - Search Query" />
+    <DynamicMiniKeyboard id="theKeyboard" showUiLanguageChars="true" />
+</children>
+
+</component>

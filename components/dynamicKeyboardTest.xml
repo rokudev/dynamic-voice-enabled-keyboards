@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="DynamicKeyboardTest" extends="Group" initialFocus="theKeyboard" >
+
+<script type="text/brightscript" >
+<![CDATA[
+    function init()
+        m.keyboard = m.top.findNode("theKeyboard")
+        m.keyboard.domain = "email"
+	m.keyboard.textEditBox.voiceEnabled = true
+
+        ' channel is designed for HD coords
+        m.screenWidth  = 1280
+        m.screenHeight = 720
+
+        centerKeyGrid()
+    end function
+
+    function centerKeyGrid()
+        brect = m.keyboard.boundingRect()
+        m.keyboard.translation = [(m.screenWidth-brect.width) / 2, (m.screenHeight-brect.height) / 2]
+     end function
+]]>
+</script>
+
+<children>
+    <SimpleLabel translation="[100, 80]" fontUri="font:LargeBoldSystemFont" text="DynamicKeyboard Use Case - Email Address Entry" />
+    <DynamicKeyboard id="theKeyboard" domain="email"/>
+</children>
+
+</component>
