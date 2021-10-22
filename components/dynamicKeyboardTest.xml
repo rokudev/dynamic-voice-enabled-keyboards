@@ -25,7 +25,6 @@
 
 <children>
     <SimpleLabel translation="[100, 80]" fontUri="font:LargeBoldSystemFont" text="DynamicKeyboard Use Case - Email Address Entry" />
-    <DynamicKeyboard id="theKeyboard" domain="email"/>
-</children>
+    <DynamicKeyboard id="theKeyboard"/></children>
 
 </component>
